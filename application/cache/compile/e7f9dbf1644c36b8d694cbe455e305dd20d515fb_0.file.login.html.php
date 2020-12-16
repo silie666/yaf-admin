@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-11 15:07:33
+/* Smarty version 3.1.36, created on 2020-12-15 18:11:05
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/public/login.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fd31ab566e052_60235761',
+  'unifunc' => 'content_5fd88bb9ea0905_67418906',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7f9dbf1644c36b8d694cbe455e305dd20d515fb' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/public/login.html',
-      1 => 1607670452,
+      1 => 1608027043,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fd31ab566e052_60235761 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
-?>
+function content_5fd88bb9ea0905_67418906 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<html lang="en" class="page-fill">
+<head>
+    <meta charset="UTF-8">
+    <title>小小后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="xxwz 小小网站">
+    <meta name="description" content="xxwz 个人练习后台">
+    <link rel="shortcut icon" href="<?php echo __IMAGES__;?>
+/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="<?php echo __CSS__;?>
+/oksub.css"/>
+</head>
 <body class="page-fill">
     <div class="page-fill" id="login">
         <form class="layui-form">
-            <div class="login_face"><img src="../images/logo.png"></div>
+            <div class="login_face"><img src="<?php echo __IMAGES__;?>
+/logo.png"></div>
             <div class="layui-form-item input-item">
                 <label for="username">用户名</label>
                 <input type="text" lay-verify="required" name="username" placeholder="请输入账号" autocomplete="off" id="username" class="layui-input">
@@ -37,21 +49,19 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
             </div>
             <div class="layui-form-item input-item captcha-box">
                 <label for="captcha">验证码</label>
-                <input type="text" lay-verify="required|captcha" name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
-                <div class="img ok-none-select" id="captchaImg"></div>
+                <input type="text"  name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
+                <img src="data:image/jpg/png/gif;base64,<?php echo $_smarty_tpl->tpl_vars['captcha']->value;?>
+" class="img ok-none-select" id="captchaImg">
             </div>
             <div class="layui-form-item">
                 <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
-            </div>
-            <div class="login-link">
-                <a href="register.html">注册</a>
-                <a href="forget.html">忘记密码?</a>
             </div>
         </form>
     </div>
     <!--js逻辑-->
     <?php echo '<script'; ?>
- src="../lib/layui/layui.js"><?php echo '</script'; ?>
+ src="<?php echo __STATIC__;?>
+/lib/layui/layui.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
 >
@@ -83,9 +93,9 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
              * 表单提交
              */
             form.on("submit(login)", function (data) {
-                okUtils.ajax("/login", "post", data.field, true).done(function (response) {
+                okUtils.ajax("/admin/public/login", "post", data.field, true).done(function (response) {
                     okLayer.greenTickMsg(response.msg, function () {
-                        window.location = "../index.html";
+                        window.location.href = "/admin/Index/index";
                     })
                 }).fail(function (error) {
                     console.log(error)

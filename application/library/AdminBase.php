@@ -5,18 +5,42 @@ class AdminBase extends Yaf\Controller_Abstract
 {
     protected $_request;
 
+    protected $_redis;
+
 
 
     public function init(){
-        $session_admin_id =  Yaf\Session::getInstance()->get('admin_id');
-        if(!empty($session_admin_id)){
-            $user = Db::name('user')->where('id', $session_admin_id)->find();
-            if (!$this->checkAccess($session_admin_id)) {
+        $this->initRedis();
+        $admin_id =  get_current_admin_id();
+        if(!empty($admin_id)){
+            $user = Db::name('user')->where('id', $admin_id)->find();
+            if (!$this->checkAccess($admin_id)) {
                 api_error("您没有访问权限！");
             }
             $this->getView()->assign("admin", $user);
         }else{
             $this->redirect("/admin/public/login");
+        }
+    }
+
+    public function initRedis($select = 0){
+        $this->_redis = new Redis();
+        $redis_config = Yaf\Application::app()->getConfig()->redis;
+
+        if ($redis_config->persistent) {
+            $this->_redis->pconnect($redis_config->host, $redis_config->port, $redis_config->timeout, 'persistent_id_' . $redis_config->select);
+        } else {
+            $this->_redis->connect($redis_config->host, $redis_config->port, $redis_config->timeout);
+        }
+
+        if ('' != $redis_config->password) {
+            $this->_redis->auth($redis_config->password);
+        }
+
+        if($select != 0){
+            $this->_redis->select($select);
+        }elseif($redis_config->select != 0){
+            $this->_redis->select($redis_config->select);
         }
     }
 
@@ -44,7 +68,6 @@ class AdminBase extends Yaf\Controller_Abstract
 
     /**
       * Author: wyf
-      * Host: http://t5.test.chemm.com
       * Date: 2020-12-09 16:41:07
       * Description: display
       */
@@ -56,9 +79,9 @@ class AdminBase extends Yaf\Controller_Abstract
         }else{
             $tpl = explode('/',$tpl);
             if(count($tpl)==1){
-                $path = $this->_request->controller.'/'.$tpl[0];
+                $path = $this->_request->controller.$tpl[0];
             }else{
-                $path = $tpl[0].'/'.$tpl[1];
+                $path = $tpl[0].$tpl[1];
             }
         }
         $this->getView()->display($this->getView()->getScriptPath()[0].strtolower($path).'.'.$ext);

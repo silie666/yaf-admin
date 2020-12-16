@@ -1,7 +1,7 @@
 <?php
 
-use wyf\Session;
-use cmf\lib\Auth;
+use Wyf\Session\Session;
+use Wyf\Auth\Auth;
 
 function session($name, $value = '', $prefix = null)
 {
@@ -46,11 +46,11 @@ function api_result($msg = '', $data = '',$code,$http_code = 200){
 }
 
 function api_success($msg = '', $data = ''){
-    result($msg,$data,1);
+    api_result($msg,$data,1);
 }
 
 function api_error($msg = '', $data = ''){
-    result($msg,$data,-1,500);
+    api_result($msg,$data,-1);
 }
 
 function input($name,$default='',$filter=null,$datas=null) {
@@ -132,6 +132,7 @@ function input($name,$default='',$filter=null,$datas=null) {
                 $data   =   array_map_recursive($filter,$data); // 参数过滤
             }
         }
+
     }elseif(isset($input[$name])) { // 取值操作
         $data       =   $input[$name];
         $filters    =   isset($filter)?$filter:Yaf\Registry::get('config')->user->default_filter;
@@ -162,6 +163,7 @@ function input($name,$default='',$filter=null,$datas=null) {
                 }
             }
         }
+
         if(!empty($type)){
             switch(strtolower($type)){
                 case 'a':	// 数组
@@ -181,10 +183,15 @@ function input($name,$default='',$filter=null,$datas=null) {
                     $data   =   (string)$data;
             }
         }
+
     }else{ // 变量默认值
         $data       =    isset($default)?$default:null;
+
     }
     is_array($data) && array_walk_recursive($data,'other_safe_filter');
+    if(isset($data['s'])){
+        unset($data['s']);
+    }
     return $data;
 }
 
@@ -272,9 +279,7 @@ function http_post($url, $param, $post_file=false){
     }
 }
 
-function md5md5($str,$salt){
-    return md5(md5($str).$salt);
-}
+
 
 
 function dump($var, $echo = true, $label = null, $flags = ENT_SUBSTITUTE)
@@ -288,3 +293,72 @@ function dump($var, $echo = true, $label = null, $flags = ENT_SUBSTITUTE)
     echo($output);
 }
 
+function md5_password($pw, $authCode = '')
+{
+    if (empty($authCode)) {
+        $authCode = Yaf\Application::app()->getConfig()->database->authcode;
+    }
+    $result = "###" . md5(md5($authCode . $pw));
+    return $result;
+}
+
+function get_client_ip($type = 0, $adv = true)
+{
+    $type      = $type ? 1 : 0;
+    static $ip = null;
+
+    if (null !== $ip) {
+        return $ip[$type];
+    }
+
+    $httpAgentIp = 'HTTP_X_REAL_IP';
+
+    if ($httpAgentIp && server($httpAgentIp)) {
+        $ip = server($httpAgentIp);
+    } elseif ($adv) {
+        if (server('HTTP_X_FORWARDED_FOR')) {
+            $arr = explode(',', server('HTTP_X_FORWARDED_FOR'));
+            $pos = array_search('unknown', $arr);
+            if (false !== $pos) {
+                unset($arr[$pos]);
+            }
+            $ip = trim(current($arr));
+        } elseif (server('HTTP_CLIENT_IP')) {
+            $ip = server('HTTP_CLIENT_IP');
+        } elseif (server('REMOTE_ADDR')) {
+            $ip = server('REMOTE_ADDR');
+        }
+    } elseif (server('REMOTE_ADDR')) {
+        $ip = server('REMOTE_ADDR');
+    }
+
+    // IP地址类型
+    $ip_mode = (strpos($ip, ':') === false) ? 'ipv4' : 'ipv6';
+
+    // IP地址合法验证
+    if (filter_var($ip, FILTER_VALIDATE_IP) !== $ip) {
+        $ip = ('ipv4' === $ip_mode) ? '0.0.0.0' : '::';
+    }
+
+    // 如果是ipv4地址，则直接使用ip2long返回int类型ip；如果是ipv6地址，暂时不支持，直接返回0
+    $long_ip = ('ipv4' === $ip_mode) ? sprintf("%u", ip2long($ip)) : 0;
+
+    $ip = [$ip, $long_ip];
+
+    return $ip[$type];
+}
+
+function server($name = '', $default = null)
+{
+    if (empty($name)) {
+        return $_SERVER;
+    } else {
+        $name = strtoupper($name);
+    }
+    return isset($_SERVER[$name]) ? $_SERVER[$name] : $default;
+}
+
+function get_current_admin_id()
+{
+    return Yaf\Session::getInstance()->get('admin_id');
+}

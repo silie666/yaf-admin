@@ -17,7 +17,7 @@ Db::setConfig([
     // 数据库类型
     'type'            => $config->database->type,
     // 服务器地址
-    'hostname'        => $config->database->type,
+    'hostname'        => $config->database->host,
     // 数据库名
     'database'        => $config->database->name,
     // 用户名

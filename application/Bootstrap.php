@@ -7,6 +7,8 @@
  * 这些方法, 都接受一个参数:Yaf_Dispatcher $dispatcher
  * 调用的次序, 和申明的次序相同
  */
+use Wyf\Smarty\Adapter;
+use Wyf\Model\Admin\AdminMenuModel;
 
 class Bootstrap extends Yaf\Bootstrap_Abstract {
     private $config;
@@ -30,6 +32,7 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
     public function _initLoader()
     {
         Yaf\Loader::import(APPLICATION_PATH . '/vendor/autoload.php');
+        Yaf\Loader::getInstance()->registerLocalNamespace("Wyf");
     }
 
     public function _initConfig(Yaf\Dispatcher $dispatcher) {
@@ -90,6 +93,3 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
 
     }
 }
-
-require_once APPLICATION_PATH."/application/library/Smarty/Adapter.php";
-

@@ -15,6 +15,14 @@ class ComposerStaticInit2ebee74a1d68977be5b1e7194357378a
         array (
             'think\\' => 6,
         ),
+        'S' => 
+        array (
+            'Symfony\\Component\\Finder\\' => 25,
+        ),
+        'G' => 
+        array (
+            'Gregwar\\' => 8,
+        ),
         'A' => 
         array (
             'App\\Models\\' => 11,
@@ -25,6 +33,15 @@ class ComposerStaticInit2ebee74a1d68977be5b1e7194357378a
         'think\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-orm/src',
+            1 => __DIR__ . '/..' . '/topthink/think-validate/src',
+        ),
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Gregwar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gregwar/captcha/src/Gregwar',
         ),
         'App\\Models\\' => 
         array (

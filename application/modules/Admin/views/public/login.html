@@ -1,8 +1,18 @@
-<{include file=Yaf\Application::app()->getConfig()->user->header_html}>
+<!DOCTYPE html>
+<html lang="en" class="page-fill">
+<head>
+    <meta charset="UTF-8">
+    <title>小小后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="xxwz 小小网站">
+    <meta name="description" content="xxwz 个人练习后台">
+    <link rel="shortcut icon" href="{{__IMAGES__}}/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{__CSS__}}/oksub.css"/>
+</head>
 <body class="page-fill">
     <div class="page-fill" id="login">
         <form class="layui-form">
-            <div class="login_face"><img src="../images/logo.png"></div>
+            <div class="login_face"><img src="{{__IMAGES__}}/logo.png"></div>
             <div class="layui-form-item input-item">
                 <label for="username">用户名</label>
                 <input type="text" lay-verify="required" name="username" placeholder="请输入账号" autocomplete="off" id="username" class="layui-input">
@@ -13,20 +23,16 @@
             </div>
             <div class="layui-form-item input-item captcha-box">
                 <label for="captcha">验证码</label>
-                <input type="text" lay-verify="required|captcha" name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
-                <div class="img ok-none-select" id="captchaImg"></div>
+                <input type="text"  name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
+                <img src="data:image/jpg/png/gif;base64,{{$captcha}}" class="img ok-none-select" id="captchaImg">
             </div>
             <div class="layui-form-item">
                 <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
             </div>
-            <div class="login-link">
-                <a href="register.html">注册</a>
-                <a href="forget.html">忘记密码?</a>
-            </div>
         </form>
     </div>
     <!--js逻辑-->
-    <script src="../lib/layui/layui.js"></script>
+    <script src="{{__STATIC__}}/lib/layui/layui.js"></script>
     <script>
         layui.use(["form", "okGVerify", "okUtils", "okLayer"], function () {
             let form = layui.form;
@@ -56,9 +62,9 @@
              * 表单提交
              */
             form.on("submit(login)", function (data) {
-                okUtils.ajax("/login", "post", data.field, true).done(function (response) {
+                okUtils.ajax("/admin/public/login", "post", data.field, true).done(function (response) {
                     okLayer.greenTickMsg(response.msg, function () {
-                        window.location = "../index.html";
+                        window.location.href = "/admin/Index/index";
                     })
                 }).fail(function (error) {
                     console.log(error)
