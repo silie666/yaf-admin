@@ -3,7 +3,7 @@
 
 /**配置fly*/
 function flyConfiguration(fly){
-	fly.config.baseURL = "http://admin.zhizous.cn/"; /**配置请求域名*/
+	fly.config.baseURL = window.location.protocol+"//"+window.location.host; /**配置请求域名*/
 	fly.config.headers = {
 		'Content-Type': 'application/x-www-form-urlencoded'
 	};

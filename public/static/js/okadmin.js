@@ -1,7 +1,7 @@
 /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
 
 var objOkTab = "";
-layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContextMenu", "okHoliday", "laydate"], function () {
+layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContextMenu", "okHoliday", "laydate","okFly"], function () {
 	var okUtils = layui.okUtils;
 	var $ = layui.jquery;
 	var form = layui.form;
@@ -9,7 +9,8 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
 	var layer = layui.layer;
 	var okLayer = layui.okLayer;
 	var okHoliday = layui.okHoliday;
-	var okTab = layui.okTab({
+    var okFly = layui.okFly;
+    var okTab = layui.okTab({
 		// 菜单请求路径
 		url: "/admin/Index/nav",
 		// 允许同时选项卡的个数
@@ -170,6 +171,15 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
 	});
 
 	/**
+	 * 清空菜单缓存
+	 */
+	$("body").on("click", ".ok-clearCache", function () {
+		okFly.get('/admin/System/clear_cache');
+		okTab.refresh(this, function (okTab) {
+		});
+	});
+
+	/**
 	 * 关闭tab页
 	 */
 	$("body").on("click", "#tabAction a", function () {
@@ -303,11 +313,31 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
 	$("#logout").click(function () {
 		okLayer.confirm("确定要退出吗？", function (index) {
 			okTab.removeTabStorage(function (res) {
-				okTab.removeTabStorage();
-				window.location = "/admin/Public/login";
+				// $.get('/admin/Public/logout',function (data) {
+				// 	if(data.code == 1){
+				// 		okTab.removeTabStorage();
+				// 		window.location = "/admin/Public/login";
+				// 	}else{
+				// 		alert('退出失败')
+				// 	}
+				// })
+
+				okFly.get("/admin/Public/logout").then(function (res) {
+					if(res.code == 1){
+						//替换当前页面
+						okTab.removeTabStorage();
+						window.location = "/admin/Public/login";
+					}
+				}).catch(function (err) {
+					alert(err.msg)
+				})
 			});
 		});
 	});
+
+	/**
+	 * 清空缓存
+	 */
 
 	/**
 	 * 锁定账户
@@ -378,7 +408,25 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
 		//退出登录
 		$("#lockQuit").click(function () {
 			// window.location.href = "./pages/login.html";
-			window.location.replace("/admin/Public/login");  //替换当前页面
+
+			okFly.get("/admin/Public/logout").then(function (res) {
+				if(res.code == 1){
+					//替换当前页面
+					window.location.replace("/admin/Public/login");
+				}
+			}).catch(function (err) {
+				console.log(err);
+				alert(err.msg)
+			})
+
+			// $.get('/admin/Public/logout',function (data) {
+			// 	if(data.code == 1){
+			// 		//替换当前页面
+			// 		window.location.replace("/admin/Public/login");
+			// 	}else{
+			// 		alert('退出失败')
+			// 	}
+			// })
 		});
 	}
 });

@@ -3,6 +3,7 @@ header('content-type:text/html;charset=utf-8');
 /* 定义这个常量是为了在application.ini中引用*/
 define('APP_DEBUG',true);
 define("MAGIC_QUOTES_GPC",  false);
+define('PROJECT_PATH', dirname(__FILE__));
 define('APPLICATION_PATH', dirname(__FILE__)."/..");
 
 
@@ -10,7 +11,8 @@ define('APPLICATION_PATH', dirname(__FILE__)."/..");
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $domainName = $_SERVER['HTTP_HOST'];
 $host =  $protocol . $domainName;
-define('__STATIC__', $host."/static");
+define('__HOST__', $host);
+define('__STATIC__', __HOST__."/static");
 define('__CSS__', __STATIC__."/css");
 define('__JS__', __STATIC__ ."/js");
 define('__IMAGES__', __STATIC__ ."/images");
