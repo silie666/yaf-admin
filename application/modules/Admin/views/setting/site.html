@@ -1,0 +1,119 @@
+{{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+</head>
+<body>
+
+<div class="ok-body">
+    <ul class="layui-tab-title">
+        <li class="layui-this">
+            <a href="/admin/setting/site">网站设置</a>
+        </li>
+    </ul>
+    <!--form表单-->
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <form class="layui-form ok-form" lay-filter="filter">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">网站名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_name]" placeholder="请输入网站名称" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$site_info['site_name']}}">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">SEO标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_seo_title]" placeholder="请输入SEO标题" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$site_info['site_seo_title']}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">SEO关键字</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_seo_keywords]" placeholder="请输入SEO关键字" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$site_info['site_seo_keywords']}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">SEO描述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_seo_description]" placeholder="请输入SEO描述" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$site_info['site_seo_description']}}">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">ICP备案</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_icp]" placeholder="请输入ICP备案" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$site_info['site_icp']}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公网安备</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_gwa]" placeholder="请输入公网安备" autocomplete="off" class="layui-input" lay-verify="" value="{{$site_info['site_gwa']}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">站长邮箱</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="options[site_admin_email]" placeholder="请输入站长邮箱" autocomplete="off" class="layui-input" lay-verify="" value="{{$site_info['site_admin_email']}}">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">统计代码</label>
+                    <div class="layui-input-block">
+                        <textarea name="options[site_analytics]" placeholder="请输入统计代码" class="layui-textarea">{{$site_info['site_analytics']}}</textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">静态资源cdn地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="cdn_settings[cdn_static_root]" placeholder="请输入静态资源cdn地址" autocomplete="off" class="layui-input"
+                               lay-verify="" value="{{$cdn_settings['cdn_static_root']}}">
+                        <span>不能以/结尾;oss使用,例:http://a.test.com</span>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{__STATIC__}}/lib/layui/layui.js"></script>
+<script>
+
+
+    layui.use(["element", "form", "okLayer", "okUtils"], function () {
+        let form = layui.form;
+        let okLayer = layui.okLayer;
+        let okUtils = layui.okUtils;
+        okLoading.close();
+
+
+        form.on("submit(edit)", function (data) {
+            okUtils.ajax("/admin/setting/site_post", "post", data.field, true).done(function (response) {
+                console.log(response);
+                okLayer.greenTickMsg(response.msg, function () {
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
+        });
+    })
+</script>
+
+</body>
+
+</html>

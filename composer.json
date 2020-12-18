@@ -5,7 +5,10 @@
       "ext-json": "*",
         "smarty/smarty": "^3.1",
         "gregwar/captcha": "^1.1",
-        "topthink/think-validate": "v1.0.2"
+        "topthink/think-validate": "v1.0.2",
+        "aliyuncs/oss-sdk-php": "^2.4",
+        "qiniu/php-sdk": "^7.3",
+        "myxland/think-uploader": "dev-master"
     },
   
     "autoload": {

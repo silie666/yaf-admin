@@ -24,24 +24,7 @@ class AdminBase extends Yaf\Controller_Abstract
     }
 
     public function initRedis($select = 0){
-        $this->_redis = new Redis();
-        $redis_config = Yaf\Application::app()->getConfig()->redis;
-
-        if ($redis_config->persistent) {
-            $this->_redis->pconnect($redis_config->host, $redis_config->port, $redis_config->timeout, 'persistent_id_' . $redis_config->select);
-        } else {
-            $this->_redis->connect($redis_config->host, $redis_config->port, $redis_config->timeout);
-        }
-
-        if ('' != $redis_config->password) {
-            $this->_redis->auth($redis_config->password);
-        }
-
-        if($select != 0){
-            $this->_redis->select($select);
-        }elseif($redis_config->select != 0){
-            $this->_redis->select($redis_config->select);
-        }
+        $this->_redis = redis();
     }
 
 

@@ -2,6 +2,7 @@
 
 use Wyf\Session\Session;
 use Wyf\Auth\Auth;
+use think\Db;
 
 function session($name, $value = '', $prefix = null)
 {
@@ -361,4 +362,70 @@ function server($name = '', $default = null)
 function get_current_admin_id()
 {
     return Yaf\Session::getInstance()->get('admin_id');
+}
+
+function get_option($key)
+{
+    if (!is_string($key) || empty($key)) {
+        return [];
+    }
+    $redis = redis();
+    $redis->del('wyf_options_cdn_settings');
+    $optionValue = $redis->get('wyf_options_' . $key);
+    if (empty($optionValue)) {
+        $optionValue = Db::name('option')->where('option_name', $key)->value('option_value');
+        if (!empty($optionValue)) {
+            $redis->set('wyf_options_' . $key,$optionValue);
+        }
+    }
+    return json_decode($optionValue,true);
+}
+
+function set_option($key,$value)
+{
+    if (!is_string($key) || empty($key)) {
+        return false;
+    }
+
+    $findOption = Db::name('option')->where('option_name', $key)->find();
+    if ($findOption) {
+        $option['option_value'] = $value;
+        if(is_array($value)){
+            $option['option_value'] = json_encode($value,320);
+        }
+        Db::name('option')->where('option_name', $key)->update($option);
+    } else {
+        $option['option_name']  = $key;
+        if(is_array($value)){
+            $option['option_value'] = json_encode($value,320);
+        }else{
+            $option['option_value'] = $value;
+        }
+        Db::name('option')->insert($option);
+    }
+    $redis = redis();
+    $redis->del('cmf_options_' . $key);
+    return true;
+}
+
+function redis($select = 0){
+    $redis = new Redis();
+    $redis_config = Yaf\Application::app()->getConfig()->redis;
+
+    if ($redis_config->persistent) {
+        $redis->pconnect($redis_config->host, $redis_config->port, $redis_config->timeout, 'persistent_id_' . $redis_config->select);
+    } else {
+        $redis->connect($redis_config->host, $redis_config->port, $redis_config->timeout);
+    }
+
+    if ('' != $redis_config->password) {
+        $redis->auth($redis_config->password);
+    }
+
+    if($select != 0){
+        $redis->select($select);
+    }elseif($redis_config->select != 0){
+        $redis->select($redis_config->select);
+    }
+    return $redis;
 }

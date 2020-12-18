@@ -1,4 +1,5 @@
 {{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+</head>
 <body class="layui-layout-body">
 <!-- 更换主体 Eg:orange_theme|blue_theme -->
 <div class="layui-layout layui-layout-admin okadmin blue_theme">
@@ -20,11 +21,19 @@
           -->
       </ul>
       <ul class="layui-nav layui-layout-right">
+
+         <li class="layui-nav-item">
+            <a class="ok-clearCache" href="javascript:" title="清除缓存">
+               <i class="layui-icon layui-icon-delete" style="font-size: 20px;"></i>
+            </a>
+         </li>
+
          <li class="layui-nav-item">
             <a class="ok-refresh" href="javascript:" title="刷新">
                <i class="layui-icon layui-icon-refresh-3"></i>
             </a>
          </li>
+
          <li class="no-line layui-nav-item layui-hide-xs">
             <a id="notice" class="flex-vc pr10 pl10" href="javascript:">
                <i class="ok-icon ok-icon-notice icon-head-i" title="系统公告"></i>

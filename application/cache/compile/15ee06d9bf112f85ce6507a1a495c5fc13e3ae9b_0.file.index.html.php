@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-16 16:08:08
+/* Smarty version 3.1.36, created on 2020-12-17 11:46:13
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/index/index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fd9c068811cf6_17887233',
+  'unifunc' => 'content_5fdad4851ee517_84843147',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15ee06d9bf112f85ce6507a1a495c5fc13e3ae9b' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/index/index.html',
-      1 => 1608105610,
+      1 => 1608174120,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fd9c068811cf6_17887233 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fdad4851ee517_84843147 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
+</head>
 <body class="layui-layout-body">
 <!-- 更换主体 Eg:orange_theme|blue_theme -->
 <div class="layui-layout layui-layout-admin okadmin blue_theme">
@@ -44,11 +45,19 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
           -->
       </ul>
       <ul class="layui-nav layui-layout-right">
+
+         <li class="layui-nav-item">
+            <a class="ok-clearCache" href="javascript:" title="清除缓存">
+               <i class="layui-icon layui-icon-delete" style="font-size: 20px;"></i>
+            </a>
+         </li>
+
          <li class="layui-nav-item">
             <a class="ok-refresh" href="javascript:" title="刷新">
                <i class="layui-icon layui-icon-refresh-3"></i>
             </a>
          </li>
+
          <li class="no-line layui-nav-item layui-hide-xs">
             <a id="notice" class="flex-vc pr10 pl10" href="javascript:">
                <i class="ok-icon ok-icon-notice icon-head-i" title="系统公告"></i>

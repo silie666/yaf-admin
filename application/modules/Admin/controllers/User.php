@@ -22,4 +22,8 @@ class UserController extends AdminBase{
             api_error('密码错误');
         }
     }
+
+    public function user_infoAction(){
+        $this->displays();
+    }
 }

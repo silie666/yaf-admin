@@ -19,7 +19,6 @@ class IndexController extends AdminBase{
 
     public function navAction(){
         $menus = json_decode($this->_redis->get('admin_menus_' . get_current_admin_id()),true);
-
         if(empty($menus)){
             $menus = AdminMenu::menuTree();
             $this->_redis->set('admin_menus_' . get_current_admin_id(),json_encode($menus,320));

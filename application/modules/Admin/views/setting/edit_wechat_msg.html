@@ -1,0 +1,45 @@
+<include file="public@header" />
+</head>
+<body>
+<div class="wrap">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="{:url('setting/editWechatMsg')}">小程序设置</a></li>
+		<li class=""><a href="{:url('setting/editWechatGzhMsg')}">公众号设置</a></li>
+	</ul>
+	<form class="js-ajax-form" method="post" action="{:url('setting/editWechatGzhMsg')}">
+		<div class="form-group ">
+			<label class="col-sm-3 form-control-label"><span class="form-required">*</span>名称</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="app_name" value="{$wxapp.app_name|default=''}">
+			</div>
+		</div>
+		<div class="form-group ">
+			<label class="col-sm-3 form-control-label"><span class="form-required">*</span>app_id<font color="red">（不要随意更改）</font></label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="app_id" value="{$wxapp.app_id|default=''}">
+			</div>
+		</div>
+		<div class="form-group ">
+			<label class="col-sm-3 form-control-label"><span class="form-required">*</span>app_secret<font color="red">（不要随意更改）</font></label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="app_secret" value="{$wxapp.app_secret|default=''}">
+			</div>
+		</div>
+
+		<div class="form-group ">
+			<label class="col-sm-3 form-control-label"><span class="form-required">*</span>版本号</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="version" value="{$wxapp.version|default=''}">
+			</div>
+		</div>
+
+		<div class="form-group ">
+			<div class="col-sm-4 offset-sm-3">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

@@ -24,4 +24,15 @@ class SystemController extends AdminBase{
         $this->displays();
     }
 
+    /**
+      * Author: wyf
+      * Date: 2020-12-16 18:30:26
+      * Description: 清空缓存
+      */
+    public function clear_cacheAction()
+    {
+        $this->_redis->del('admin_menus_' . get_current_admin_id());
+        api_success('清除成功');
+    }
+
 }

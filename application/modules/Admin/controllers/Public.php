@@ -8,6 +8,7 @@ class PublicController extends AdminBase{
 
     public function init()
     {
+        parent::initRedis();
     }
 
 
@@ -61,5 +62,16 @@ class PublicController extends AdminBase{
                 $this->displays();
             }
         }
+    }
+
+    /**
+     * 后台管理员退出
+     */
+    public function logoutAction()
+    {
+        $session = Yaf\Session::getInstance();
+        $session->set('admin_id',null);
+        $this->_redis->del('admin_menus_' . get_current_admin_id());
+        api_success('退出成功');
     }
 }
