@@ -50,7 +50,7 @@ class AdminMenu extends Model
 
                 $ruleName = strtolower($v['app'] . "/" . $v['controller'] . "/" . $action);
 //                print_r($ruleName);
-                if (cmf_auth_check(get_current_admin_id(), $ruleName)) {
+                if (auth_check(get_current_admin_id(), $ruleName)) {
                     $array[] = $v;
                 }
 

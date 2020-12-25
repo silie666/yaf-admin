@@ -4,40 +4,40 @@
 
 <div class="ok-body">
 	<ul class="layui-tab-title">
-		<li>
-			<a href="/admin/User/user_info">修改个人信息</a>
+		<li class="">
+			<a href="/admin/Setting/edit_wechat_xcx">小程序设置</a>
 		</li>
-        <li class="layui-this">
-            <a href="/admin/Setting/password">修改密码</a>
-        </li>
+		<li class="layui-this">
+			<a href="/admin/Setting/edit_wechat_gzh">公众号设置</a>
+		</li>
 	</ul>
 	<!--form表单-->
 	<div class="layui-tab-content" style="height: 100px;">
 		<div class="layui-tab-item layui-show">
 			<form class="layui-form ok-form" lay-filter="filter">
-
-
 				<div class="layui-form-item">
-					<label class="layui-form-label">原始密码</label>
+					<label class="layui-form-label">名称</label>
 					<div class="layui-input-block">
-						<input type="password" name="old_password" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="required">
+						<input type="text" name="app_name" placeholder="请输入名称" autocomplete="off" class="layui-input"
+							   lay-verify="" value="{{$wxapp['app_name']}}">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
-					<label class="layui-form-label">新密码</label>
+					<label class="layui-form-label">appid</label>
 					<div class="layui-input-block">
-						<input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="required">
+						<input type="text" name="app_id" placeholder="请输入appid" autocomplete="off" class="layui-input"
+							   lay-verify="" value="{{$wxapp['app_id']}}">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
-					<label class="layui-form-label">重复新密码</label>
+					<label class="layui-form-label">app_secret</label>
 					<div class="layui-input-block">
-						<input type="password" name="re_password" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="required">
+						<input type="text" name="app_secret" placeholder="请输入app_secret" autocomplete="off" class="layui-input"
+							   lay-verify="" value="{{$wxapp['app_secret']}}">
 					</div>
 				</div>
-
 
 
 				<div class="layui-form-item">
@@ -56,14 +56,15 @@
 <script>
 
 
-	layui.use(["form", "okLayer", "okUtils"], function () {
+	layui.use(["element", "form", "okLayer", "okUtils"], function () {
 		let form = layui.form;
 		let okLayer = layui.okLayer;
 		let okUtils = layui.okUtils;
 		okLoading.close();
 
+
 		form.on("submit(edit)", function (data) {
-			okUtils.ajax("/admin/setting/password_post", "post", data.field, true).done(function (response) {
+			okUtils.ajax("/admin/setting/edit_wechat_gzh", "post", data.field, true).done(function (response) {
 				console.log(response);
 				okLayer.greenTickMsg(response.msg, function () {
 

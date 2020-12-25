@@ -3,6 +3,8 @@
 @import "./okadmin.theme.css";
 @import "./okadmin.animate.css";
 @import "../lib/layui/css/okmodules/jquery.contextMenu.css";
+@import "../css/common.css";
+
 
 /*html{
     webkit-filter: grayscale(100%);
@@ -1020,3 +1022,35 @@
     }
 }
 
+#upload_img_list {
+    margin: 10px 0 0 0
+}
+#upload_img_list dd {
+    position: relative;
+    margin: 0 10px 10px 0;
+    float: left
+}
+#upload_img_list .operate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1
+}
+#upload_img_list .operate i {
+    cursor: pointer;
+    background: #2F4056;
+    padding: 2px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff;
+    margin-left: 1px;
+    float: left;
+    filter: alpha(opacity=80);
+    -moz-opacity: .8;
+    -khtml-opacity: .8;
+    opacity: .8
+}
+#upload_img_list dd .img {
+    max-height: 150px;
+    max-width: 500px
+}

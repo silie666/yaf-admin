@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-16 16:09:04
+/* Smarty version 3.1.36, created on 2020-12-23 16:17:42
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/system/alert_skin.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fd9c0a014cc21_85624555',
+  'unifunc' => 'content_5fe2fd26bcb191_56159924',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e6bba787bdda32b007b9772151c9d805550343f4' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/system/alert_skin.html',
-      1 => 1608103777,
+      1 => 1608285750,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fd9c0a014cc21_85624555 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe2fd26bcb191_56159924 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>

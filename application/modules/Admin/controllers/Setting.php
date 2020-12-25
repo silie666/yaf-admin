@@ -132,50 +132,6 @@ class SettingController extends AdminBase
         }
     }
 
-    /**
-     * 上传限制设置界面
-     * @adminMenu(
-     *     'name'   => '上传设置',
-     *     'parent' => 'default',
-     *     'display'=> true,
-     *     'hasView'=> true,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '上传设置',
-     *     'param'  => ''
-     * )
-     */
-    public function upload()
-    {
-        $uploadSetting = cmf_get_upload_setting();
-        $this->assign('upload_setting', $uploadSetting);
-        return $this->fetch();
-    }
-
-    /**
-     * 上传限制设置界面提交
-     * @adminMenu(
-     *     'name'   => '上传设置提交',
-     *     'parent' => 'upload',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '上传设置提交',
-     *     'param'  => ''
-     * )
-     */
-    public function uploadPost()
-    {
-        if ($this->request->isPost()) {
-            //TODO 非空验证
-            $uploadSetting = $this->request->post();
-
-            cmf_set_option('upload_setting', $uploadSetting);
-            $this->success('保存成功！','/Admin/Setting/upload');
-        }
-
-    }
 
 
     /**
@@ -191,33 +147,18 @@ class SettingController extends AdminBase
      *     'param'  => ''
      * )
      */
-    public function editWechatMsg()
+    public function edit_wechat_xcxAction()
     {
-        if ($this->request->isPost()) {
-            $data = $this->request->param();
-
-//            $result = $this->validate($data, "AdminWxapp");
-//
-//            if ($result !== true) {
-//                $this->error($result);
-//            }
-
-            $wxappSettings = cmf_get_option('wxapp_settings');
-
-            $wxappSettings['wxapps'] = $data;
-
-            cmf_set_option('wxapp_settings', $wxappSettings);
-
-            $this->success('保存成功！');
-        } else {
-
-
-            $wxappSettings = cmf_get_option('wxapp_settings');
-
-            $this->assign('wxapp', $wxappSettings['wxapps']);
-
-            return $this->fetch();
+        if (IS_POST) {
+            $data = input('post.');
+            $wxapp_settings = get_option('wxapp_settings');
+            $wxapp_settings['wxapps'] = $data;
+            set_option('wxapp_settings', $wxapp_settings);
+            api_success('保存成功');
         }
+        $wxapp_settings = get_option('wxapp_settings');
+        $this->getView()->assign('wxapp',$wxapp_settings['wxapps']);
+        $this->displays();
     }
 
 
@@ -235,27 +176,18 @@ class SettingController extends AdminBase
      *     'param'  => ''
      * )
      */
-    public function editWechatGzhMsg()
+    public function edit_wechat_gzhAction()
     {
-        if ($this->request->isPost()) {
-            $data = $this->request->param();
-
-            $wxappSettings = cmf_get_option('wxgzh_settings');
-
-            $wxappSettings['wxapps'] = $data;
-
-            cmf_set_option('wxgzh_settings', $wxappSettings);
-
-            $this->success('保存成功！');
-        } else {
-
-
-            $wxappSettings = cmf_get_option('wxgzh_settings');
-
-            $this->assign('wxapp', $wxappSettings['wxapps']);
-
-            return $this->fetch();
+        if (IS_POST) {
+            $data = input('post.');
+            $wxapp_settings = get_option('wxgzh_settings');
+            $wxapp_settings['wxapps'] = $data;
+            set_option('wxgzh_settings', $wxapp_settings);
+            api_success('保存成功');
         }
+        $wxapp_settings = get_option('wxgzh_settings');
+        $this->getView()->assign('wxapp',$wxapp_settings['wxapps']);
+        $this->displays();
     }
 
 }

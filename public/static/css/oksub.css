@@ -1,5 +1,5 @@
-@import "../css/common.css";
 @import "../lib/layui/css/layui.css";
+@import "../css/common.css";
 @import "okadmin.animate.css";
 @import "../lib/loading/okLoading.css";
 

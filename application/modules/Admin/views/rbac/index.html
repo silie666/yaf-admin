@@ -1,0 +1,110 @@
+{{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+</head>
+<body>
+<div class="ok-body">
+	<!--面包屑导航区域-->
+	<ul class="layui-tab-title">
+		<li class="layui-this">
+			<a href="/admin/Menu/index">后台菜单</a>
+		</li>
+	</ul>
+	<div class="layui-row">
+		<from class="layui-form ok-search-form">
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<button class="layui-btn" type="button" id="add" data-id="">添加角色</button>
+				</div>
+			</div>
+		</from>
+	</div>
+	<!--数据表格-->
+	<table class="layui-table layui-form" id="tree-table" lay-size="sm" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="{{__STATIC__}}/lib/layui/layui.js"></script>
+<script>
+
+	layui.use(['form',"table",'jquery','okLayer','okUtils'], function () {
+		okLoading.close();
+
+		let $ = layui.$,
+				okUtils = layui.okUtils,
+				listTable = layui.table,
+				okLayer = layui.okLayer;
+		// 直接下载后url: './data/table-tree.json',这个配置可能看不到数据，改为data:[],获取自己的实际链接返回json数组
+		let table = listTable.render({
+			elem: '#tableId',
+			url: okMock.api.listUser,
+			limit: 20,
+			page: true,
+			toolbar: true,
+			toolbar: "#toolbarTpl",
+			size: "sm",
+			cols: [[
+				{type: "checkbox", fixed: "left"},
+				{field: "id", title: "ID", width: 160, sort: true},
+				{field: "username", title: "账号", width: 100},
+				{field: "password", title: "密码", width: 100},
+				{field: "name", title: "姓名", width: 100},
+				{field: "nickname", title: "昵称", width: 100},
+				{field: "role", title: "角色", width: 100, templet: "#roleTpl"},
+				{field: "status", title: "状态", width: 100, templet: "#statusTpl"},
+				{field: "email", title: "邮箱", width: 200},
+				{field: "province", title: "省份", width: 120},
+				{field: "city", title: "城市", width: 100},
+				{field: "county", title: "区县", width: 120},
+				{field: "logins", title: "登陆次数", width: 100},
+				{field: "createTime", title: "创建时间", width: 150},
+				{field: "updateTime", title: "更新时间", width: 150},
+				{title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
+			]],
+			done: function (res, curr, count) {
+				console.info(res, curr, count);
+			}
+		});
+
+		$('body').on('click',"#add",function () {
+			let id = $(this).attr("data-id");
+			let obj = {
+				parent_id: id
+			}
+			let url  = `/admin/Menu/add?${encodeSearchParams(obj)}`;
+			okLayer.open("添加子菜单",url, "90%", "90%", null, function () {
+			})
+		})
+
+		$('body').on('click',"#edit",function () {
+			let id = $(this).attr("data-id");
+			let obj = {
+				id: id
+			}
+			let url  = `/admin/Menu/edit?${encodeSearchParams(obj)}`;
+			okLayer.open("编辑",url, "90%", "90%", null, function () {
+			})
+		})
+
+		$('body').on('click',"#del",function () {
+			let id = $(this).attr("data-id");
+			let params = {
+				id: id
+			}
+			okLayer.confirm("确定要删除吗？", function (index) {
+				layer.close(index);
+				okUtils.ajax("/admin/Menu/delete", "get",params, true).done(function (response) {
+					okLayer.greenTickMsg(response.msg, function () {
+
+						window.location.reload();
+
+					});
+				}).fail(function (error) {
+					console.log(error)
+				});
+			})
+
+		})
+
+	});
+
+</script>
+</body>
+</html>

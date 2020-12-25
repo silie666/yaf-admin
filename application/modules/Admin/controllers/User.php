@@ -1,6 +1,7 @@
 <?php
 
 use think\Db;
+use Wyf\Model\Admin\User;
 
 class UserController extends AdminBase{
     public function init()
@@ -24,6 +25,17 @@ class UserController extends AdminBase{
     }
 
     public function user_infoAction(){
+        if(IS_POST){
+            $data = input('post.');
+            $where = array('id'=> get_current_admin_id());
+            $model = new User();
+            $result = $model->allowField(true)->save($data,$where);
+            if($result){
+                api_success('修改成功');
+            }else{
+                api_error('修改失败');
+            }
+        }
         $this->displays();
     }
 }

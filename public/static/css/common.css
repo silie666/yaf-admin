@@ -21,7 +21,7 @@
     .ok-search .layui-btn{margin-left:0;margin-top:10px}
 }
 
-.ok-search-form {margin-bottom: -15px;}
+.ok-search-form {margin-bottom: 15px; margin-top: 15px;display: block;}
 .ok-search-form .layui-form-item .layui-inline .layui-input-inline{margin-bottom: 5px;}
 
 /*表单*/

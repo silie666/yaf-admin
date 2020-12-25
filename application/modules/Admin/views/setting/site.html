@@ -5,7 +5,7 @@
 <div class="ok-body">
     <ul class="layui-tab-title">
         <li class="layui-this">
-            <a href="/admin/setting/site">网站设置</a>
+            <a href="/admin/Setting/site">网站设置</a>
         </li>
     </ul>
     <!--form表单-->
@@ -104,7 +104,7 @@
             okUtils.ajax("/admin/setting/site_post", "post", data.field, true).done(function (response) {
                 console.log(response);
                 okLayer.greenTickMsg(response.msg, function () {
-                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+
                 });
             }).fail(function (error) {
                 console.log(error)

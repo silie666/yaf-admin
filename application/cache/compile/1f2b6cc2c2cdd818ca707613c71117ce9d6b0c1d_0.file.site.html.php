@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-18 15:08:53
+/* Smarty version 3.1.36, created on 2020-12-24 14:05:45
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/setting/site.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fdc5585bfda41_42636656',
+  'unifunc' => 'content_5fe42fb9988252_98514559',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f2b6cc2c2cdd818ca707613c71117ce9d6b0c1d' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/setting/site.html',
-      1 => 1608275329,
+      1 => 1608789939,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fdc5585bfda41_42636656 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe42fb9988252_98514559 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
@@ -29,7 +29,7 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
 <div class="ok-body">
     <ul class="layui-tab-title">
         <li class="layui-this">
-            <a href="/admin/setting/site">网站设置</a>
+            <a href="/admin/Setting/site">网站设置</a>
         </li>
     </ul>
     <!--form表单-->
@@ -141,6 +141,7 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
             okUtils.ajax("/admin/setting/site_post", "post", data.field, true).done(function (response) {
                 console.log(response);
                 okLayer.greenTickMsg(response.msg, function () {
+                    console.log(window.name)
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                 });
             }).fail(function (error) {

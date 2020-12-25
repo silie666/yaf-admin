@@ -96,6 +96,7 @@ class Validate
         'lt'          => ':attribute必须小于 :rule',
         'eq'          => ':attribute必须等于 :rule',
         'regex'       => ':attribute不符合指定规则',
+        'unique'      => ':attribute has exists',
         'method'      => '无效的请求类型',
         'fileSize'    => '上传文件大小不符',
         'fileExt'     => '上传文件后缀不符',
@@ -836,6 +837,63 @@ class Validate
         }
 
         if (!in_array($extension, $ext)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * 验证是否唯一
+     * @access public
+     * @param  mixed     $value  字段值
+     * @param  mixed     $rule  验证规则 格式：数据表,字段名,排除ID,主键名
+     * @param  array     $data  数据
+     * @param  string    $field  验证字段名
+     * @return bool
+     */
+    public function unique($value, $rule, $data, $field)
+    {
+        if (is_string($rule)) {
+            $rule = explode(',', $rule);
+        }
+
+        if (false !== strpos($rule[0], '\\')) {
+            // 指定模型类
+            $db = new $rule[0];
+        } else {
+            $db = Db::name($rule[0]);
+        }
+        $key = isset($rule[1]) ? $rule[1] : $field;
+
+        if (strpos($key, '^')) {
+            // 支持多个字段验证
+            $fields = explode('^', $key);
+            foreach ($fields as $key) {
+                if (isset($data[$key])) {
+                    $map[] = [$key, '=', $data[$key]];
+                }
+            }
+        } elseif (strpos($key, '=')) {
+            parse_str($key, $map);
+        } elseif (isset($data[$field])) {
+            $map[] = [$key, '=', $data[$field]];
+        } else {
+            $map = [];
+        }
+
+        $pk = !empty($rule[3]) ? $rule[3] : $db->getPk();
+
+        if (is_string($pk)) {
+            if (isset($rule[2])) {
+                $map[] = [$pk, '<>', $rule[2]];
+            } elseif (isset($data[$pk])) {
+                $map[] = [$pk, '<>', $data[$pk]];
+            }
+        }
+
+        if ($db->where($map)->field($pk)->find()) {
             return false;
         }
 

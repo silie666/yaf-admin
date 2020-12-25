@@ -20,7 +20,7 @@ function session($name, $value = '', $prefix = null)
     }
 }
 
-function cmf_auth_check($user_id, $name = null, $relation = 'or')
+function auth_check($user_id, $name = null, $relation = 'or')
 {
     if (empty($user_id)) {
         return false;
@@ -404,7 +404,7 @@ function set_option($key,$value)
         Db::name('option')->insert($option);
     }
     $redis = redis();
-    $redis->del('cmf_options_' . $key);
+    $redis->del('wyf_options_' . $key);
     return true;
 }
 
@@ -429,3 +429,4 @@ function redis($select = 0){
     }
     return $redis;
 }
+

@@ -67,6 +67,7 @@ if (!Object.assign) {
         code: "modules/code",
         jquery: "modules/jquery",
         mobile: "modules/mobile",
+        treeTable: "modules/treeTable",
         "layui.all": "../layui.all"
     }, okmodules);
     var t = document,

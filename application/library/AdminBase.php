@@ -43,7 +43,7 @@ class AdminBase extends Yaf\Controller_Abstract
         $rule       = strtolower($this->_request->uri);
         $not_require = ["admin/index/index", "admin/main/index"];
         if (!in_array($rule, $not_require)) {
-            return cmf_auth_check($user_id,$rule);
+            return auth_check($user_id,$rule);
         } else {
             return true;
         }
@@ -68,6 +68,23 @@ class AdminBase extends Yaf\Controller_Abstract
             }
         }
         $this->getView()->display($this->getView()->getScriptPath()[0].strtolower($path).'.'.$ext);
+    }
+
+    /**
+      * Author: wyf
+      * Date: 2020-12-23 15:08:39
+      * Description: 设置排序
+      */
+    protected function listOrders($model){
+        $pk  = Db::name($model)->getPk();
+        $ids = array_filter(input('list_orders/a'));
+        if (!empty($ids)) {
+            foreach ($ids as $key => $r) {
+                $data['list_order'] = $r;
+                Db::name($model)->where($pk, $key)->update($data);
+            }
+        }
+        return true;
     }
 
 }
