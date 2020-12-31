@@ -1,0 +1,95 @@
+{{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+</head>
+<body>
+<div class="ok-body">
+    <!--form表单-->
+    <form class="layui-form ok-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" placeholder="角色名称" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info.name}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色备注</label>
+            <div class="layui-input-block">
+                <input type="text" name="remark" placeholder="角色备注" autocomplete="off" class="layui-input"  value="{{$info.remark}}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色权限</label>
+            <div class="layui-input-block">
+                <div id="permissionTree"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="id" value="{{$info.id}}">
+                <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="{{__STATIC__}}/lib/layui/layui.js"></script>
+<script>
+    layui.use(['form', "tree",'okUtils','okLayer'], function () {
+        let form = layui.form, tree = layui.tree, okUtils = layui.okUtils,okLayer=layui.okLayer;
+
+        okLoading.close();
+
+        let data = {{$menu}};
+        tree.render({
+            id: "id",
+            elem: "#permissionTree",
+            // data: okMock.permission.list,
+            data: data,
+            showCheckbox: true
+        });
+
+        form.on('submit(edit)', function (data) {
+            let checkData = tree.getChecked('id');
+            let menu_id = getCheckedId(checkData)
+            let obj = {
+                id:data.field.id,
+                name:data.field.name,
+                remark:data.field.remark,
+                menu_id:menu_id,
+            }
+            okUtils.ajax("/admin/Rbac/edit", "post", obj, true).done(function (response) {
+                console.log(response);
+                okLayer.greenTickMsg(response.msg, function () {
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    window.location.reload();
+                });
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
+        });
+
+        //获取所有选中的节点id
+        function getCheckedId(data) {
+            let id = "";
+            $.each(data, function (index, item) {
+                if (id != "") {
+                    id = id + "," + item.id;
+                }
+                else {
+                    id = item.id;
+                }
+                //item 没有children属性
+                if (item.children != null) {
+                    let i = getCheckedId(item.children);
+                    if (i != "") {
+                        id = id + "," + i;
+                    }
+                }
+            });
+            return id;
+        }
+    })
+</script>
+</body>
+</html>

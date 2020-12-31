@@ -5,7 +5,6 @@ class Session
 {
     /**
       * Author: wyf
-      * Host: http://t5.test.chemm.com
       * Date: 2020-12-08 17:51:49
       * Description: 判断session是否存在
       */
@@ -27,7 +26,6 @@ class Session
 
     /**
       * Author: wyf
-      * Host: http://t5.test.chemm.com
       * Date: 2020-12-08 17:52:06
       * Description: 删除session
       */
@@ -55,7 +53,6 @@ class Session
 
     /**
      * Author: wyf
-     * Host: http://t5.test.chemm.com
      * Date: 2020-12-08 17:52:06
      * Description: 设置session
      */
@@ -78,7 +75,6 @@ class Session
 
     /**
       * Author: wyf
-      * Host: http://t5.test.chemm.com
       * Date: 2020-12-08 17:52:22
       * Description: 获取session
       */

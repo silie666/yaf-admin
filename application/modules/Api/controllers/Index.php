@@ -1,9 +1,9 @@
 <?php
 
-class IndexController extends Yaf\Controller_Abstract {
+class IndexController extends ApiBase {
 
     public function indexAction() {
         echo "hello word";
-        return false;
+        die;
     }
 }

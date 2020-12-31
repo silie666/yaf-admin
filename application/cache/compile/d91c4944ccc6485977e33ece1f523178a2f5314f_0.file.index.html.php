@@ -1,4 +1,28 @@
-{{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+<?php
+/* Smarty version 3.1.36, created on 2020-12-28 17:44:14
+  from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/rbac/index.html' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.36',
+  'unifunc' => 'content_5fe9a8ee38d905_82621678',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'd91c4944ccc6485977e33ece1f523178a2f5314f' => 
+    array (
+      0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/rbac/index.html',
+      1 => 1609148653,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5fe9a8ee38d905_82621678 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
 </head>
 <body>
 <div class="ok-body">
@@ -21,8 +45,12 @@
 	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
 </div>
 <!--js逻辑-->
-<script src="{{__STATIC__}}/lib/layui/layui.js"></script>
-<script>
+<?php echo '<script'; ?>
+ src="<?php echo __STATIC__;?>
+/lib/layui/layui.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
 
 	layui.use(['form',"table",'jquery','okLayer','okUtils'], function () {
 		okLoading.close();
@@ -31,7 +59,8 @@
 		let $ = layui.$,
 				okUtils = layui.okUtils,
 				listTable = layui.table,
-				data = {{$data}},
+				data = <?php echo $_smarty_tpl->tpl_vars['data']->value;?>
+,
 				okLayer = layui.okLayer;
 
 		let table = listTable.render({
@@ -98,6 +127,8 @@
 
 	});
 
-</script>
+<?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

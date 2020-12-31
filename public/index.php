@@ -1,11 +1,11 @@
 <?php
 header('content-type:text/html;charset=utf-8');
+
 /* 定义这个常量是为了在application.ini中引用*/
 define('APP_DEBUG',true);
 define("MAGIC_QUOTES_GPC",  false);
 define('PROJECT_PATH', dirname(__FILE__));
-define('APPLICATION_PATH', dirname(__FILE__)."/..");
-
+define('APPLICATION_PATH', PROJECT_PATH."/..");
 
 //static
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -22,9 +22,11 @@ define('IS_POST', $_SERVER['REQUEST_METHOD'] == 'POST');
 define('IS_GET', $_SERVER['REQUEST_METHOD'] == 'GET');
 
 session_start();
-$application = new Yaf\Application( APPLICATION_PATH ."/conf/application.ini");
 
+$application = new Yaf\Application( APPLICATION_PATH ."/conf/admin.ini");
 $application->bootstrap()->run();
+
+
 
 
 ?>

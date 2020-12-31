@@ -60,24 +60,6 @@ class AdminMenu extends Model
         return $array;
     }
 
-    /**
-     * 获取菜单 头部菜单导航
-     * @param string $parentId 菜单id
-     * @param bool   $bigMenu
-     * @return array|string|\think\Collection
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public static function subMenu($parentId = '', $bigMenu = false)
-    {
-        $array   = self::adminMenu($parentId, 1);
-        $numbers = count($array);
-        if ($numbers == 1 && !$bigMenu) {
-            return '';
-        }
-        return $array;
-    }
 
     /**
      * 菜单树状结构集合
@@ -140,47 +122,5 @@ class AdminMenu extends Model
         }
 
         return false;
-    }
-
-
-
-    public static function menu($parentId, $with_self = false)
-    {
-        //父节点ID
-        $parentId = (int)$parentId;
-        $result   = self::where('parent_id', $parentId)->select();
-        if ($with_self) {
-            $result2[] = self::where('id', $parentId)->find();
-            $result    = array_merge($result2, $result);
-        }
-        return $result;
-    }
-
-    /**
-     * 得到某父级菜单所有子菜单，包括自己
-     * @param int $parentId
-     * @return array|string|\think\Collection
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     */
-    public static function getMenuTree($parentId = 0)
-    {
-        $menus = self::where("parent_id", $parentId)->order(["list_order" => "ASC"])->select();
-
-        if ($menus) {
-            foreach ($menus as $key => $menu) {
-                $children = self::getMenuTree($menu['id']);
-                if (!empty($children)) {
-                    $menus[$key]['children'] = $children;
-                }
-                unset($menus[$key]['id']);
-                unset($menus[$key]['parent_id']);
-            }
-            return $menus;
-        } else {
-            return $menus;
-        }
-
     }
 }

@@ -21,7 +21,6 @@ class Adapter implements Yaf\View_Interface
      */
     public function __construct($tmplPath = null, $extraParams = array()) {
         $this->_smarty = new Smarty();
-
         if (null !== $tmplPath) {
             $this->setScriptPath($tmplPath);
         }
@@ -52,8 +51,7 @@ class Adapter implements Yaf\View_Interface
             $this->_smarty->template_dir = $path;
             return;
         }
-
-        throw new Exception('Invalid path provided');
+        throw new \Exception('Invalid path provided');
     }
     /**
      * Retrieve the current template directory

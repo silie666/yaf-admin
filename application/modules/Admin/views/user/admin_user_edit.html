@@ -1,0 +1,79 @@
+{{include file=Yaf\Application::app()->getConfig()->user->header_html}}
+</head>
+<body>
+<div class="ok-body">
+    <!--form表单-->
+    <form class="layui-form ok-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">帐号</label>
+            <div class="layui-input-block">
+                <input type="text" name="user_login" placeholder="帐号" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info.user_login}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="user_pass" placeholder="密码" autocomplete="off" class="layui-input"  value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="user_nickname" placeholder="昵称" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info.user_nickname}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="email" name="user_email" placeholder="邮箱" autocomplete="off" class="layui-input" lay-verify="email" value="{{$info.user_email}}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-block">
+                <select name="role_id" lay-verify="" lay-search>
+                    {{foreach from=$roles key=k item=vo}}
+                        <option value="{{$vo['id']}}" {{if $vo['id'] == $info.role_id}} selected  {{/if}}> {{$vo['name']}}</option>
+                    {{/foreach}}
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="id" value="{{$info.id}}">
+                <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--js逻辑-->
+<script src="{{__STATIC__}}/lib/layui/layui.js"></script>
+<script>
+    layui.use(['form', "tree",'okUtils','okLayer'], function () {
+        let form = layui.form,  okUtils = layui.okUtils,okLayer=layui.okLayer;
+        okLoading.close();
+        form.on('submit(edit)', function (data) {
+            okUtils.ajax("/admin/User/admin_user_edit", "post", data.field, true).done(function (response) {
+                console.log(response);
+                okLayer.greenTickMsg(response.msg, function () {
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    window.location.reload();
+                });
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
+        });
+
+
+    })
+</script>
+</body>
+</html>

@@ -12,6 +12,9 @@ class AdminBase extends Yaf\Controller_Abstract
     public function init(){
         $this->initRedis();
         $admin_id =  get_current_admin_id();
+        if(strtolower($this->_request->module) !== 'admin'){
+            exit('错误');
+        }
         if(!empty($admin_id)){
             $user = Db::name('user')->where('id', $admin_id)->find();
             if (!$this->checkAccess($admin_id)) {
@@ -67,7 +70,7 @@ class AdminBase extends Yaf\Controller_Abstract
                 $path = $tpl[0].$tpl[1];
             }
         }
-        $this->getView()->display($this->getView()->getScriptPath()[0].strtolower($path).'.'.$ext);
+        $this->getView()->display($this->getView()->getScriptPath()[0].strtolower($path).'.'.$ext);;
     }
 
     /**

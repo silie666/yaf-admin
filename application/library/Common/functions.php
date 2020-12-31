@@ -430,3 +430,25 @@ function redis($select = 0){
     return $redis;
 }
 
+/**
+  * Author: wyf
+  * Date: 2020-12-28 15:00:03
+  * Description: 树
+  */
+function generateTree($data,$key1 = 'id',$key2='grandpaid',$key3='son')
+{
+    $items = array();
+    foreach ($data as $v) {
+        $items[$v[$key1]] = $v;
+    }
+    $tree = array();
+    foreach ($items as $k => $item) {
+        if (isset($items[$item[$key2]])) {
+            $items[$item[$key2]][$key3][] = &$items[$k];
+        } else {
+            $tree[] = &$items[$k];
+        }
+    }
+    return $tree;
+}
+

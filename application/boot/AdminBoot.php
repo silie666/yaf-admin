@@ -1,6 +1,6 @@
 <?php
 /**
- * @name Bootstrap
+ * @name AdminBoot
  * @author wyf
  * @desc 所有在Bootstrap类中, 以_init开头的方法, 都会被Yaf调用,
  * @see http://www.php.net/manual/en/class.yaf-bootstrap-abstract.php
@@ -8,23 +8,21 @@
  * 调用的次序, 和申明的次序相同
  */
 use Wyf\Smarty\Adapter;
-use Wyf\Model\Admin\AdminMenuModel;
 
 class Bootstrap extends Yaf\Bootstrap_Abstract {
     private $config;
 
-    /**
-     * 初始化错误,要放在最前面
-     */
+
     public function _initErrors()
     {
-        //如果为开发环境,打开所有错误提示
         if (YAF\ENVIRON === 'develop') {
-            error_reporting(E_ERROR | E_PARSE);//使用error_reporting来定义哪些级别错误可以触发//E_ERROR | E_WARNING | E_PARSE
+            error_reporting(E_ERROR | E_PARSE);
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
         }
     }
+
+
 
     /**
      * 加载vendor下的文件
@@ -67,7 +65,6 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
 
     /**
       * Author: wyf
-      * Host: http://t5.test.chemm.com
       * Date: 2020-12-08 14:54:57
       * Description: 公告函数入口
       */
@@ -83,13 +80,13 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
 //        $router->addRoute('myRoute',$route);
         $router = $dispatcher->getRouter();
         $route = new Yaf\Route\Rewrite(
-            'api/:controller/:action',
+            'admin/:controller/:action',
             array(
                 'controller' => ':controller',
                 'action' => ':action',
             )
         );
-        $router->addRoute('api', $route);
-
+        $router->addRoute('admin', $route);
     }
+
 }

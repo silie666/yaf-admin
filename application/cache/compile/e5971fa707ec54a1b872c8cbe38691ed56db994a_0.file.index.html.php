@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-25 11:41:10
+/* Smarty version 3.1.36, created on 2020-12-28 11:07:02
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/menu/index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe55f563181e8_18266541',
+  'unifunc' => 'content_5fe94bd6211419_47561013',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5971fa707ec54a1b872c8cbe38691ed56db994a' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/menu/index.html',
-      1 => 1608867656,
+      1 => 1609123640,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe55f563181e8_18266541 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe94bd6211419_47561013 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
@@ -58,14 +58,13 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
 <?php echo '<script'; ?>
 >
 
-    layui.use(['form',"treeTable",'jquery','okLayer','okUtils','okTab'], function () {
+    layui.use(['form',"treeTable",'jquery','okLayer','okUtils'], function () {
         okLoading.close();
 
         let $ = layui.$,
             form = layui.form,
             treeTable = layui.treeTable,
             okUtils = layui.okUtils,
-            okTab = layui.okTab,
             okLayer = layui.okLayer;
         // 直接下载后url: './data/table-tree.json',这个配置可能看不到数据，改为data:[],获取自己的实际链接返回json数组
         let	table = treeTable.render({
@@ -134,7 +133,7 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
                         return '<div class="layui-btn-group">' +
                             '  <button type="button" class="layui-btn" id="add" data-id="'+item.id+'" >添加子菜单</button>' +
                             '  <button type="button" class="layui-btn" id="edit" data-id="'+item.id+'">编辑</button>' +
-                            '  <button type="button" class="layui-btn" id="del" data-id="'+item.id+'">删除</button>' +
+                            '  <button type="button" class="layui-btn layui-btn-danger" id="del" data-id="'+item.id+'">删除</button>' +
                             '</div>'
                     }
                 }
