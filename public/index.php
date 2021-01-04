@@ -1,6 +1,5 @@
 <?php
 header('content-type:text/html;charset=utf-8');
-
 /* 定义这个常量是为了在application.ini中引用*/
 define('APP_DEBUG',true);
 define("MAGIC_QUOTES_GPC",  false);
