@@ -1,4 +1,4 @@
-# Yaf快速开发，个人学习Yaf开发的骨架，
+# Yaf快速开发，个人学习Yaf开发的骨架
 > 目前只完成了admin部分，由于在写go版本，api部分可自己写，
 > 大部分思路来源于：
 >[thinkcmf](https://www.thinkcmf.com/)
