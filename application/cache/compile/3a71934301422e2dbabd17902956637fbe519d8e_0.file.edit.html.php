@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-29 15:18:14
+/* Smarty version 3.1.36, created on 2021-01-04 16:47:59
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/rbac/edit.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fead8361db466_94119744',
+  'unifunc' => 'content_5ff2d63f219cb3_89526083',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3a71934301422e2dbabd17902956637fbe519d8e' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/rbac/edit.html',
-      1 => 1609212602,
+      1 => 1609750053,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fead8361db466_94119744 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff2d63f219cb3_89526083 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>

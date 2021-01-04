@@ -77,12 +77,11 @@ class RbacController extends AdminBase
                 api_error('该角色不存在！');
             }
             $auth_access     = Db::name("auth_access")->where('role_id',$id)->column('rule_name');
-            $admin_menu      = Db::name('admin_menu')->field('id,parent_id,name as title,app,controller,action')->all();
+            $admin_menu      = Db::name('admin_menu')->field('id,parent_id,type,name as title,app,controller,action')->all();
             foreach ($admin_menu as &$v){
                 foreach ($auth_access as &$vv){
-                    if(strtolower($vv) == strtolower("{$v['app']}/{$v['controller']}/{$v['action']}")){
+                    if(strtolower($vv) == strtolower("{$v['app']}/{$v['controller']}/{$v['action']}")&&$v['type']!=0){
                         $v['checked'] = true;
-                        unset($vv);
                     }
                 }
             }
@@ -90,7 +89,11 @@ class RbacController extends AdminBase
         }else{
             $admin_menu      = Db::name('admin_menu')->field('id,parent_id,name as title,app,controller,action')->all();
         }
+
         $admin_menu = generateTree($admin_menu,'id','parent_id','children');
+
+
+
         $this->getView()->assign('menu',json_encode($admin_menu,320));
         $this->displays();
     }

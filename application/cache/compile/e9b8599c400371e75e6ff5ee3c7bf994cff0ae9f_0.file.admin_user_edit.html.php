@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-29 16:43:34
+/* Smarty version 3.1.36, created on 2021-01-04 15:33:49
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/user/admin_user_edit.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5feaec3606c445_89009261',
+  'unifunc' => 'content_5ff2c4ddc447b3_77936836',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e9b8599c400371e75e6ff5ee3c7bf994cff0ae9f' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/user/admin_user_edit.html',
-      1 => 1609231410,
+      1 => 1609728704,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5feaec3606c445_89009261 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff2c4ddc447b3_77936836 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
