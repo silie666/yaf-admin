@@ -3,7 +3,7 @@
 > 大部分思路来源于：
 >[thinkcmf](https://www.thinkcmf.com/)
 >[yafcms](https://gitee.com/huoyongliang/yafcms)
->[模板来源于ok-admin](https://gitee.com/wudibo/ok-admin)
+>模板来源于[ok-admin](https://gitee.com/wudibo/ok-admin)
 
 ### 个人环境
 > yaf，redis，SeasLog这些都可以通过PECL下载
@@ -17,13 +17,13 @@
 | SeasLog        |    2.0.2    | 
 
 ### php.ini新增配置
-extension=redis.so
-extension=yaf.so
-extension=seaslog.so
-yaf.use_namespace=1
-yaf.environ=develop
-seaslog.default_basepath = '/data'
-seaslog.default_logger = default
+    extension=redis.so
+    extension=yaf.so
+    extension=seaslog.so
+    yaf.use_namespace=1
+    yaf.environ=develop
+    seaslog.default_basepath = '/data'
+    seaslog.default_logger = default
 
 ### nginx配置
 > 因为有两个入口文件，这里只写大致配置
