@@ -1,4 +1,4 @@
-# Yaf快速开发，个人学习Yaf
+# Yaf快速开发，个人学习Yaf项目
 > 目前只完成了admin部分
 > 大部分思路来源于：
 >[thinkcmf](https://www.thinkcmf.com/)
