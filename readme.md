@@ -57,6 +57,10 @@
     }
 
 
+> 部署完成后，访问http://a.test.com/admin/public/login 帐号admin,密码123456,如果遇到打不开请检查下目录权限问题
+
+
+
 
 
 
