@@ -1,6 +1,5 @@
-# Yaf快速开发，个人学习Yaf项目
-> 个人QQ:1312119468
-> 目前只完成了admin部分
+# Yaf快速开发，个人学习Yaf开发的骨架，
+> 目前只完成了admin部分，由于再写go版本，api部分可自己写，
 > 大部分思路来源于：
 >[thinkcmf](https://www.thinkcmf.com/)
 >[yafcms](https://gitee.com/huoyongliang/yafcms)
