@@ -6,7 +6,7 @@
 >模板来源于[ok-admin](https://gitee.com/wudibo/ok-admin)
 
 ### 个人环境
-> yaf，redis，SeasLog这些都可以通过PECL下载
+> yaf，redis，SeasLog这些都可以通过[PECL](http://pecl.php.net/)下载
 
 | 服务        | 版本  | 
 | --------   | -----:  | 
