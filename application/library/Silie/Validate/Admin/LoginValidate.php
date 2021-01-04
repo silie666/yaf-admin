@@ -1,5 +1,5 @@
 <?php
-namespace Wyf\Validate\Admin;
+namespace Silie\Validate\Admin;
 
 use think\Validate;
 

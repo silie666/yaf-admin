@@ -1,9 +1,9 @@
 <?php
 
 use think\Db;
-use Wyf\Tree\Tree;
-use Wyf\Validate\Admin\AdminMenuValidate;
-use Wyf\Model\Admin\AdminMenu;
+use Silie\Tree\Tree;
+use Silie\Validate\Admin\AdminMenuValidate;
+use Silie\Model\Admin\AdminMenu;
 class MenuController extends AdminBase {
     public function init()
     {

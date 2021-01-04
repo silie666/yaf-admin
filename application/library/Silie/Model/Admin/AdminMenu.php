@@ -1,5 +1,5 @@
 <?php
-namespace Wyf\Model\Admin;
+namespace Silie\Model\Admin;
 
 use think\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wyf\Auth;
+namespace Silie\Auth;
 
 use think\Db;
 

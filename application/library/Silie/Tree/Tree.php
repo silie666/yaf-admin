@@ -1,6 +1,6 @@
 <?php
 
-namespace Wyf\Tree;
+namespace Silie\Tree;
 /**
  * 通用的树型类，可以生成任何树型结构
  */

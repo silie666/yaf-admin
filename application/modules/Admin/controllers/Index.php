@@ -1,5 +1,5 @@
 <?php
-use Wyf\Model\Admin\AdminMenu;
+use Silie\Model\Admin\AdminMenu;
 
 class IndexController extends AdminBase{
 

@@ -2,7 +2,7 @@
 //require_once APPLICATION_PATH."/application/validate/admin/LoginValidate.php";
 use Gregwar\Captcha\PhraseBuilder;
 use Gregwar\Captcha\CaptchaBuilder;
-use Wyf\Validate\Admin\LoginValidate;
+use Silie\Validate\Admin\LoginValidate;
 use think\Db;
 class PublicController extends AdminBase{
 
@@ -65,7 +65,7 @@ class PublicController extends AdminBase{
     }
 
     /**
-      * Author: wyf
+      * Author: silie
       * Date: 2021-01-04 11:20:41
       * Description: 更新验证码
       */

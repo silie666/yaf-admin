@@ -1,15 +1,15 @@
 <?php
 
 use think\Db;
-use Wyf\Tree\Tree;
-use Wyf\Validate\Admin\RoleValidate;
-use Wyf\Model\Admin\AdminMenu;
+use Silie\Tree\Tree;
+use Silie\Validate\Admin\RoleValidate;
+use Silie\Model\Admin\AdminMenu;
 
 class RbacController extends AdminBase
 {
 
     /**
-      * Author: wyf
+      * Author: Silie
       * Date: 2020-12-25 11:57:50
       * Description: 首页
       */

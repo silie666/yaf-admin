@@ -1,5 +1,5 @@
 <?php
-namespace Wyf\Smarty;
+namespace Silie\Smarty;
 
 use Yaf;
 use Smarty;

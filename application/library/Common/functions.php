@@ -1,7 +1,7 @@
 <?php
 
-use Wyf\Session\Session;
-use Wyf\Auth\Auth;
+use Silie\Session\Session;
+use Silie\Auth\Auth;
 use think\Db;
 
 function session($name, $value = '', $prefix = null)
@@ -370,12 +370,12 @@ function get_option($key)
         return [];
     }
     $redis = redis();
-    $redis->del('wyf_options_cdn_settings');
-    $optionValue = $redis->get('wyf_options_' . $key);
+    $redis->del('silie_options_cdn_settings');
+    $optionValue = $redis->get('silie_options_' . $key);
     if (empty($optionValue)) {
         $optionValue = Db::name('option')->where('option_name', $key)->value('option_value');
         if (!empty($optionValue)) {
-            $redis->set('wyf_options_' . $key,$optionValue);
+            $redis->set('silie_options_' . $key,$optionValue);
         }
     }
     return json_decode($optionValue,true);
@@ -404,7 +404,7 @@ function set_option($key,$value)
         Db::name('option')->insert($option);
     }
     $redis = redis();
-    $redis->del('wyf_options_' . $key);
+    $redis->del('silie_options_' . $key);
     return true;
 }
 
@@ -431,7 +431,7 @@ function redis($select = 0){
 }
 
 /**
-  * Author: wyf
+  * Author: silie
   * Date: 2020-12-28 15:00:03
   * Description: 树
   */

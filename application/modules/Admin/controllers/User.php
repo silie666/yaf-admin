@@ -1,8 +1,8 @@
 <?php
 
 use think\Db;
-use Wyf\Model\Admin\User;
-use Wyf\Validate\Admin\UserValidate;
+use Silie\Model\Admin\User;
+use Silie\Validate\Admin\UserValidate;
 
 class UserController extends AdminBase{
     public function init()
@@ -95,7 +95,7 @@ class UserController extends AdminBase{
 
 
     /**
-      * Author: wyf
+      * Author: silie
       * Date: 2020-12-16 16:31:26
       * Description: 检测密码
       */

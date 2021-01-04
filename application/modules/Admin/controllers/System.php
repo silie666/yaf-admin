@@ -7,7 +7,7 @@ class SystemController extends AdminBase{
     }
 
     /**
-      * Author: wyf
+      * Author: silie
       * Date: 2020-12-16 15:04:02
       * Description:  主题
       */
@@ -16,7 +16,7 @@ class SystemController extends AdminBase{
     }
 
     /**
-      * Author: wyf
+      * Author: silie
       * Date: 2020-12-16 15:27:28
       * Description: 皮肤动画
       */
@@ -25,7 +25,7 @@ class SystemController extends AdminBase{
     }
 
     /**
-      * Author: wyf
+      * Author: silie
       * Date: 2020-12-16 18:30:26
       * Description: 清空缓存
       */

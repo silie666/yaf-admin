@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Wyf\Model\Admin;
+namespace Silie\Model\Admin;
 
 
 use think\Model;
@@ -48,7 +48,7 @@ class User extends Model
     }
 
     /**
-      * Author: wyf
+      * Author: Silie
       * Date: 2020-12-31 11:17:53
       * Description: 获取详情
       */
@@ -58,7 +58,7 @@ class User extends Model
 
 
     /**
-      * Author: wyf
+      * Author: Silie
       * Date: 2020-12-31 11:19:41
       * Description: 删除
       */
