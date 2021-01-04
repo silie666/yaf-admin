@@ -34,29 +34,30 @@
     <!--js逻辑-->
     <script src="{{__STATIC__}}/lib/layui/layui.js"></script>
     <script>
-        layui.use(["form", "okGVerify", "okUtils", "okLayer"], function () {
+        layui.use(["form", "okUtils", "okLayer"], function () {
             let form = layui.form;
             let $ = layui.jquery;
-            let okGVerify = layui.okGVerify;
             let okUtils = layui.okUtils;
             let okLayer = layui.okLayer;
 
             /**
-             * 初始化验证码
+             * 刷新验证码
              */
-            let verifyCode = new okGVerify("#captchaImg");
-
-            /**
-             * 数据校验
-             */
-            form.verify({
-                password: [/^[\S]{6,12}$/, "密码必须6到12位，且不能出现空格"],
-                captcha: function (val) {
-                    if (verifyCode.validate(val) != "true") {
-                        return verifyCode.validate(val)
+            $('#captchaImg').click(function (e) {
+                okUtils.ajax("/admin/public/get_code", "get", {}, true).done(function (response) {
+                    if(response.code == 1){
+                        $('#captchaImg').attr('src','data:image/jpg/png/gif;base64,'+response.data)
+                    }else{
+                        okLayer.greenTickMsg(response.msg, function () {
+                            window.location.reload()
+                        })
                     }
-                }
-            });
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            })
+
+
 
             /**
              * 表单提交

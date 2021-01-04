@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-25 09:50:01
+/* Smarty version 3.1.36, created on 2021-01-04 14:06:55
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/user/user_info.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe5454928a4c4_23710508',
+  'unifunc' => 'content_5ff2b07fd66000_23251789',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '975aecfe1cb1b8e4472273138e827715908d14cf' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/user/user_info.html',
-      1 => 1608793588,
+      1 => 1609740414,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe5454928a4c4_23710508 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff2b07fd66000_23251789 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
@@ -59,7 +59,7 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
                     <div class="layui-input-block">
 
                         <button type="button" class="layui-btn layui-btn-primary" id="upload_img">上传图片</button>
-                        <div id="upload_img_list" name="avatar" data-img_num="1" data-value="<?php echo $_smarty_tpl->tpl_vars['admin']->value['avatar'];?>
+                        <div id="upload_img_list" name="avatar" data-img_num="2" data-value="<?php echo $_smarty_tpl->tpl_vars['admin']->value['avatar'];?>
 "> </div>
 
                     </div>

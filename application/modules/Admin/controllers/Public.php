@@ -65,6 +65,23 @@ class PublicController extends AdminBase{
     }
 
     /**
+      * Author: wyf
+      * Date: 2021-01-04 11:20:41
+      * Description: 更新验证码
+      */
+    public function get_codeAction(){
+        $session = Yaf\Session::getInstance();
+        $phraseBuilder = new PhraseBuilder(4, '0123456789');
+        $captcha = new CaptchaBuilder(null, $phraseBuilder);
+        $captcha->build();
+        $session->set(md5_password($captcha->getPhrase()),$captcha->getPhrase());
+        $captcha_img = base64_encode($captcha->get());
+        api_success('获取成功',$captcha_img);
+    }
+
+
+
+    /**
      * 后台管理员退出
      */
     public function logoutAction()

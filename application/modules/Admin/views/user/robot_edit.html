@@ -4,19 +4,6 @@
 <div class="ok-body">
     <!--form表单-->
     <form class="layui-form ok-form">
-        <div class="layui-form-item">
-            <label class="layui-form-label">帐号</label>
-            <div class="layui-input-block">
-                <input type="text" name="user_login" placeholder="帐号" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info['user_login']}}">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-block">
-                <input type="password" name="user_pass" placeholder="密码" autocomplete="off" class="layui-input"  value="">
-            </div>
-        </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">昵称</label>
@@ -26,20 +13,12 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
+            <label class="layui-form-label">头像</label>
             <div class="layui-input-block">
-                <input type="email" name="user_email" placeholder="邮箱" autocomplete="off" class="layui-input" lay-verify="email" value="{{$info['user_email']}}">
-            </div>
-        </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色</label>
-            <div class="layui-input-block">
-                <select name="role_id" lay-verify="" lay-search>
-                    {{foreach from=$roles key=k item=vo}}
-                        <option value="{{$vo['id']}}" {{if $vo['id'] == $info['role_id']}} selected  {{/if}}> {{$vo['name']}}</option>
-                    {{/foreach}}
-                </select>
+                <button type="button" class="layui-btn layui-btn-primary" id="upload_img">上传图片</button>
+                <div id="upload_img_list" name="avatar" data-img_num="1" data-value="{{$info['avatar']}}"> </div>
+
             </div>
         </div>
 
@@ -56,11 +35,15 @@
 <!--js逻辑-->
 <script src="{{__STATIC__}}/lib/layui/layui.js"></script>
 <script>
+
+    $("#upload_img").upfile($("#upload_img_list").attr('data-img_num'),$("#upload_img_list").attr('data-value'))
+
+
     layui.use(['form', "tree",'okUtils','okLayer'], function () {
         let form = layui.form,  okUtils = layui.okUtils,okLayer=layui.okLayer;
         okLoading.close();
         form.on('submit(edit)', function (data) {
-            okUtils.ajax("/admin/User/admin_user_edit", "post", data.field, true).done(function (response) {
+            okUtils.ajax("/admin/User/robot_edit", "post", data.field, true).done(function (response) {
                 console.log(response);
                 okLayer.greenTickMsg(response.msg, function () {
                     parent.layer.close(parent.layer.getFrameIndex(window.name));

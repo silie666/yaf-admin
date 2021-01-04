@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-23 11:37:26
+/* Smarty version 3.1.36, created on 2021-01-04 11:38:07
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/public/login.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe2bb767d3133_74368578',
+  'unifunc' => 'content_5ff28d9f276f67_02955135',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7f9dbf1644c36b8d694cbe455e305dd20d515fb' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/public/login.html',
-      1 => 1608285750,
+      1 => 1609731485,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe2bb767d3133_74368578 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff28d9f276f67_02955135 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en" class="page-fill">
 <head>
@@ -65,29 +65,30 @@ function content_5fe2bb767d3133_74368578 (Smarty_Internal_Template $_smarty_tpl)
 >
     <?php echo '<script'; ?>
 >
-        layui.use(["form", "okGVerify", "okUtils", "okLayer"], function () {
+        layui.use(["form", "okUtils", "okLayer"], function () {
             let form = layui.form;
             let $ = layui.jquery;
-            let okGVerify = layui.okGVerify;
             let okUtils = layui.okUtils;
             let okLayer = layui.okLayer;
 
             /**
-             * 初始化验证码
+             * 刷新验证码
              */
-            let verifyCode = new okGVerify("#captchaImg");
-
-            /**
-             * 数据校验
-             */
-            form.verify({
-                password: [/^[\S]{6,12}$/, "密码必须6到12位，且不能出现空格"],
-                captcha: function (val) {
-                    if (verifyCode.validate(val) != "true") {
-                        return verifyCode.validate(val)
+            $('#captchaImg').click(function (e) {
+                okUtils.ajax("/admin/public/get_code", "get", {}, true).done(function (response) {
+                    if(response.code == 1){
+                        $('#captchaImg').attr('src','data:image/jpg/png/gif;base64,'+response.data)
+                    }else{
+                        okLayer.greenTickMsg(response.msg, function () {
+                            window.location.reload()
+                        })
                     }
-                }
-            });
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            })
+
+
 
             /**
              * 表单提交

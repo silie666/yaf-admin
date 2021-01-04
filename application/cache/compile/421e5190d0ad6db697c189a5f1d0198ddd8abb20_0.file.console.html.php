@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-23 09:52:23
+/* Smarty version 3.1.36, created on 2021-01-04 13:55:33
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/index/console.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe2a2d742b9e3_31013760',
+  'unifunc' => 'content_5ff2add5862c73_39623564',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '421e5190d0ad6db697c189a5f1d0198ddd8abb20' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/index/console.html',
-      1 => 1608285750,
+      1 => 1609739300,
       2 => 'file',
     ),
   ),
@@ -20,38 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe2a2d742b9e3_31013760 (Smarty_Internal_Template $_smarty_tpl) {
-?><!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>小小网站</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="keywords" content="xxwz 小小网站">
-	<meta name="description" content="xxwz 小小网站">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="<?php echo __CSS__;?>
-/oksub.css" media="all"/>
-	<?php echo '<script'; ?>
- type="text/javascript" src="<?php echo __STATIC__;?>
-/lib/echarts/echarts.min.js"><?php echo '</script'; ?>
->
-	<?php echo '<script'; ?>
- type="text/javascript" src="<?php echo __STATIC__;?>
-/lib/echarts/echarts.theme.js"><?php echo '</script'; ?>
->
-	<?php echo '<script'; ?>
- type="text/javascript" src="<?php echo __STATIC__;?>
-/lib/echarts/world/js/china.js"><?php echo '</script'; ?>
->
+function content_5ff2add5862c73_39623564 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+?>
 </head>
-后面再写
+<body class="layui-layout-body">
+不知道写什么，自由发挥吧
+
+<?php echo '<script'; ?>
+ src="<?php echo __STATIC__;?>
+/lib/layui/layui.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+
+	okLoading.close();
+<?php echo '</script'; ?>
+>
 
 
+</body>
+</html>
 
 
 

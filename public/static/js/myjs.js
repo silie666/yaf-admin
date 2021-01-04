@@ -9,6 +9,9 @@ var Upfile = function(ele,opt,num,value){
     if(num != 1){
         duotu = true
     }
+
+
+
     this.defaults = {
         //elem:'#uploadPic' //绑定元素
         elem:$(ele) //绑定元素
@@ -25,6 +28,10 @@ var Upfile = function(ele,opt,num,value){
         }
         ,done:function(res){
             layer.close(layer.msg());//关闭上传提示窗口
+            var img_num = $(".item_img").length
+            if(img_num >= num){
+                return layer.msg('超出上传限制，限制为'+num);
+            }
             var str = Math.random().toString(36).slice(-6);
             //如果上传失败
             if(res.code != 1){

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-25 09:47:43
+/* Smarty version 3.1.36, created on 2021-01-04 11:03:33
   from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/menu/edit.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe544bf73b986_82358617',
+  'unifunc' => 'content_5ff28585969f98_18542180',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '70def2df4ecdc39c380dff327041bd6b7063697e' => 
     array (
       0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/menu/edit.html',
-      1 => 1608802838,
+      1 => 1608867656,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe544bf73b986_82358617 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff28585969f98_18542180 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
@@ -163,6 +163,7 @@ $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->head
                 console.log(response);
                 okLayer.greenTickMsg(response.msg, function () {
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    window.location.reload();
                 });
             }).fail(function (error) {
                 console.log(error)

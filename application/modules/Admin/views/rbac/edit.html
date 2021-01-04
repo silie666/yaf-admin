@@ -7,13 +7,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">角色名称</label>
             <div class="layui-input-block">
-                <input type="text" name="name" placeholder="角色名称" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info.name}}">
+                <input type="text" name="name" placeholder="角色名称" autocomplete="off" class="layui-input" lay-verify="required" value="{{$info['name']}}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">角色备注</label>
             <div class="layui-input-block">
-                <input type="text" name="remark" placeholder="角色备注" autocomplete="off" class="layui-input"  value="{{$info.remark}}">
+                <input type="text" name="remark" placeholder="角色备注" autocomplete="off" class="layui-input"  value="{{$info['remark']}}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -24,7 +24,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input type="hidden" name="id" value="{{$info.id}}">
+                <input type="hidden" name="id" value="{{$info['id']}}">
                 <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>

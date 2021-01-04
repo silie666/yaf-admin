@@ -191,6 +191,8 @@ class UserController extends AdminBase{
 
 
     public function robot_indexAction(){
+        $sex_type = array('保密','男','女');
+        $this->getView()->assign('sex_type',json_encode($sex_type));
         $this->displays();
     }
 
