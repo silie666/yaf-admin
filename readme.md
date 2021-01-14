@@ -33,7 +33,7 @@
     listen 80;
     server_name a.test.com;
 
-    root /home/wyf/project/phptest/yaf/public;
+    root /home/silie/project/phptest/yaf/public;
     location / {
         index  index.php index.html index.htm;
         if (!-e $request_filename){
@@ -47,7 +47,7 @@
 
     listen 80;
     server_name a.test.com;
-    root /home/wyf/project/phptest/yaf/public;
+    root /home/silie/project/phptest/yaf/public;
     location / {
         index  api.php;
         if (!-e $request_filename){
