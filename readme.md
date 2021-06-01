@@ -56,7 +56,7 @@
     }
 
 
-> 部署完成后，访问http://a.test.com/admin/public/login 帐号admin,密码123456,如果遇到打不开请检查下目录权限问题
+> 部署完成后，访问http://a.test.com/admin/public/login 帐号admin,密码123456,如果遇到打不开请检查下目录权限问题,大部分原因来源application/cache，public/uploads没有权限，碰到扩展缺少请安装gd，mysql，mbstring这种扩展
 
 
 
