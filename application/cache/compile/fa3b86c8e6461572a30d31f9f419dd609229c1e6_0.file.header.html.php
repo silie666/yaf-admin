@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-24 15:06:40
-  from '/home/wyf/project/phptest/yaf/application/modules/header.html' */
+/* Smarty version 3.1.36, created on 2021-06-01 13:44:31
+  from '/files/php/yaf-admin/application/modules/header.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe43e009f3de5_64983770',
+  'unifunc' => 'content_60b5c93fc366b9_55254686',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '76918ec16e043e41f6099aa38d9e2a0d84026500' => 
+    'fa3b86c8e6461572a30d31f9f419dd609229c1e6' => 
     array (
-      0 => '/home/wyf/project/phptest/yaf/application/modules/header.html',
-      1 => 1608793588,
+      0 => '/files/php/yaf-admin/application/modules/header.html',
+      1 => 1622450396,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe43e009f3de5_64983770 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60b5c93fc366b9_55254686 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <head>

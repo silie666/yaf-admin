@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-30 14:48:22
-  from '/home/wyf/project/phptest/yaf/application/modules/Admin/views/setting/site.html' */
+/* Smarty version 3.1.36, created on 2021-06-01 13:44:40
+  from '/files/php/yaf-admin/application/modules/Admin/views/setting/site.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fec22b6157ca2_97039941',
+  'unifunc' => 'content_60b5c948b4afb3_53141668',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '1f2b6cc2c2cdd818ca707613c71117ce9d6b0c1d' => 
+    'e69a47d165f376772f079687f24865555bda1be2' => 
     array (
-      0 => '/home/wyf/project/phptest/yaf/application/modules/Admin/views/setting/site.html',
-      1 => 1608790566,
+      0 => '/files/php/yaf-admin/application/modules/Admin/views/setting/site.html',
+      1 => 1622450396,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fec22b6157ca2_97039941 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60b5c948b4afb3_53141668 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender(Yaf\Application::app()->getConfig()->user->header_html, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
 </head>
